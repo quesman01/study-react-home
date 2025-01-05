@@ -5,6 +5,7 @@ import styles from "@/styles/Home.module.css";
 import { Footer } from "../components/Footer"
 import Link from "next/link";
 import { Links } from "@/components/Links";
+import { Headline } from "@/components/Headline";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,7 +30,7 @@ export default function Home() {
         className={`${styles.page} ${geistSans.variable} ${geistMono.variable}`}
       >
         <main className={styles.main}>
-          <p >Index Page</p>
+          <Headline title="Index Page!!!" page="index"/>
 
           <Links/>
         </main>

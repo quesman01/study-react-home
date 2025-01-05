@@ -5,20 +5,6 @@ import Image from "next/image";
 export  function Links() {
   return (
     <>
-              <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js logo"
-            width={180}
-            height={108}
-            priority
-          />
-          <ol>
-            <li>
-              Get started by editing <code>pages/index.js</code>.
-            </li>
-            <li>Save and see your changes instantly.</li>
-          </ol>
 
           <div className={styles.ctas}>
             <a
