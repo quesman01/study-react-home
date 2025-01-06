@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Maiden_Orange } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 import { Footer } from "../components/Footer"
 import { Main } from "@/components/Main";
+import { Header } from "@/components/Header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,7 +26,8 @@ export default function Home() {
       </Head>
       <div
         className={`${styles.page} ${geistSans.variable} ${geistMono.variable}`}
-      >
+        >
+        <Header/>
 
         <Main page="index"/>
 
