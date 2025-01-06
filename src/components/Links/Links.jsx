@@ -1,5 +1,5 @@
 
-import classes from "./Links.module.css";
+import classes from "src/components/Links/Links.module.css";
 import Image from "next/image";
 import React from "react";
 
@@ -68,7 +68,7 @@ export  function Links() {
                 {/* mapにおいて個々のkeyを指定しないとエラーでるよ */}
               </React.Fragment>
               // react をimportしてFragmentを使用し　keyを使えるようにした
-              // #7 html entities(→など)は場合によっては変換されて使えない 対応は動画に
+              // #7 html entities(→など)は場合によっては変換されて使えない 対応は動画に\
           )
         })}
       </div>
