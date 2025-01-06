@@ -1,15 +1,15 @@
 import React from "react";
 import Image from "next/image";
-import styles from "@/styles/Home.module.css";
+import classes from "./Headline.module.css";
 
 
 export  function Headline(props) {
     // console.log(props);
     return (
     <React.Fragment>
-        <p className={styles.title}>{props.page} Page</p>
+        <p className={classes.title}>{props.page} Page</p>
           <Image
-            className={styles.logo}
+            className={classes.logo}
             src="/next.svg"
             alt="Next.js logo"
             width={180}
