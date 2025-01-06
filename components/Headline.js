@@ -4,7 +4,7 @@ import styles from "@/styles/Home.module.css";
 
 
 export  function Headline(props) {
-    console.log(props.title);
+    // console.log(props);
     return (
     <React.Fragment>
         <p className={styles.title}>{props.page} Page</p>
@@ -17,14 +17,14 @@ export  function Headline(props) {
             priority
           />
 
-<ol>
+          <ol>
             <li>
-              Get started by editing <code>pages/{props.page}.js</code>.
+              Get started by editing {props.children}.
             </li>
             <li>Save and see your changes instantly.</li>
           </ol>
 
-
+          {/* <button onClick={props.onClick}>ボタン</button> */}
     </React.Fragment>
     // React.Fragment はimport reactは必要だが　単純に<></>でもいい
   );
