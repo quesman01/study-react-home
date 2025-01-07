@@ -25,7 +25,9 @@ const geistMono = Geist_Mono({
 // }
 
 export default function Home() {
-  const [count, setCount] = useState(1)
+  const [count, setCount] = useState(1);
+  const [text, setText] = useState("");
+  const [isshow, setIshhow] = useState(true);
   
   // let foo =1;
 
@@ -56,6 +58,18 @@ export default function Home() {
   //   alert(123);
   // }
 
+  const handleChange = useCallback((e) => {
+    if(e.target.value.length > 5){
+      alert("5文字以内にしてください")
+      return;
+    }
+     setText(e.target.value.trim())
+  },[]);
+
+  const handleDisplay = useCallback(() =>{
+    setIshhow((isshow) =>  !isshow);
+  }, []);
+
   return (
     <>
       <Head>
@@ -65,7 +79,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <h1 className={styles.math}>{count}</h1>
+      {isshow ? <h1 className={styles.math}>{count}</h1> :null}
         <button
         className={styles.btn}
           href="/about"
@@ -78,9 +92,18 @@ export default function Home() {
           ボタン
         </button>
         {/* #9 function(e) または　(e)=> */}
+        <button className={styles.btn}
+          onClick={handleDisplay}>
+            {isshow ? "非常時": "表示"}
+        </button>
+        {/* #13 jsx(React)において　return文の中ではif文は使えない */}
       <div
         className={`${styles.page} ${geistSans.variable} ${geistMono.variable}`}
       >
+        <input 
+          type="text" 
+          value={text} 
+          onChange={handleChange}/>
 
         <Main page="index" />
         <Footer />
