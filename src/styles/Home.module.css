@@ -16,6 +16,16 @@
   font-family: var(--font-geist-sans);
 }
 
+.btn{
+  /* margin-left: 100px; */
+  display: flex;
+  margin: 0 auto;
+}
+
+.math{
+  text-align: center;
+}
+
 @media (prefers-color-scheme: dark) {
   .page {
     --gray-rgb: 255, 255, 255;

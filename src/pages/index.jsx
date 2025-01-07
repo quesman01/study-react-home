@@ -4,7 +4,7 @@ import styles from "src/styles/Home.module.css";
 import { Footer } from "src/components/Footer/Footer";
 import { Main } from "@/src/components/Main/Main";
 import { Header } from "src/components/Header/Header";
-// import { useCallback, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 // #8 相対パスから絶対パスへの変更 設定よりユーザーは全体、ワークスペースは今のやつのみ
 
@@ -25,34 +25,40 @@ const geistMono = Geist_Mono({
 // }
 
 export default function Home() {
-  // useEffect(()=>{
-  //   console.log("マウント時");
-  //   document.body.style.backgroundColor = "lightblue"
+  const [count, setCount] = useState(1)
+  
+  // let foo =1;
 
-  //   return () => {
-  //     console.log("アンマウント時");
-  //     document.body.style.backgroundColor = "lightblue"
+  const handleClick = (e) =>{
+    // foo = foo + 1;
+    setCount( (count) => count +1 );
+    setCount( (count) => count +1 );
+  };
 
-  //   }
-  // },[])
-  const foo =1;
-
+  console.log(count)
+  
+  
+  useEffect(()=>{
+    // console.log("マウント時");
+    document.body.style.backgroundColor = "lightblue"
+    
+    return () => {
+      // console.log("アンマウント時");
+      document.body.style.backgroundColor = ""
+      
+    }
+  },[])
   // 下の関数にいれてるが、上からの順番なのでこのままfooを下に書くとエラーがでる
   // コンポーネントの外だと上下ないが (e, foo)という形で呼び出す必要がある
-
+  
   // // #9
-  // const handleClick = useCallback((e) => {
-  //     console.log(e.target.href);
-  //     e.preventDefault();
-  //     alert(123);
-  //   }, []);
   // #9 または
 
-  function handleClick  (e)  {
-    console.log(e.target.href);
-    // e.preventDefault();
-    alert(123);
-  }
+  // function handleClick  (e)  {
+  //   console.log(e.target.href);
+  //   // e.preventDefault();
+  //   alert(123);
+  // }
 
   return (
     <>
@@ -62,10 +68,10 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div
-        className={`${styles.page} ${geistSans.variable} ${geistMono.variable}`}
-      >
-        <a
+      <Header />
+      <h1 className={styles.math}>{count}</h1>
+        <button
+        className={styles.btn}
           href="/about"
           onClick={handleClick}
           // // onClick={(e) =>{
@@ -74,9 +80,11 @@ export default function Home() {
           // // }}
         >
           ボタン
-        </a>
+        </button>
         {/* #9 function(e) または　(e)=> */}
-        <Header />
+      <div
+        className={`${styles.page} ${geistSans.variable} ${geistMono.variable}`}
+      >
 
         <Main page="index" />
         <Footer />

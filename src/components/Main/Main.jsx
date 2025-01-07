@@ -1,20 +1,20 @@
 import classes from "src/components/Main/Main.module.css";
 import { Links } from "src/components/Links/Links";
 import { Headline } from "src/components/Headline/Headline";
-import { useCallback, useEffect } from "react";
+// import { useCallback, useEffect } from "react";
 
 export function Main(props) {
 // #10　useEffect
-    useEffect(()=>{
-      console.log("マウント時");
-      document.body.style.backgroundColor = "lightblue";
+    // useEffect(()=>{
+    //   console.log("マウント時");
+    //   document.body.style.backgroundColor = "lightblue";
       
-      return () => {
-        console.log("アンマウント時");
-        document.body.style.backgroundColor = "red";
+    //   return () => {
+    //     console.log("アンマウント時");
+    //     document.body.style.backgroundColor = "red";
   
-      };
-    },[])
+    //   };
+    // },[])
 
   return (
     <>
