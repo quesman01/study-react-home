@@ -4,6 +4,7 @@ import styles from "src/styles/Home.module.css";
 import { Footer } from "src/components/Footer/Footer";
 import { Main } from "src/components/Main/Main";
 import { Header } from "src/components/Header/Header";
+import { useCallback } from "react";
 
 // #8 相対パスから絶対パスへの変更 設定よりユーザーは全体、ワークスペースは今のやつのみ
 
@@ -17,7 +18,33 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+// const handleClick = (e,foo)=>{
+//   console.log(e.target.href);
+//   e.preventDefault();
+//   alert(foo);
+// }
+
 export default function Home() {
+  const foo =1;
+
+  // const foo =1;
+  // 下の関数にいれてるが、上からの順番なのでこのままfooを下に書くとエラーがでる
+  // コンポーネントの外だと上下ないが (e, foo)という形で呼び出す必要がある
+  
+  // #9 
+  const handleClick = useCallback((e) => {
+      console.log(e.target.href);
+      e.preventDefault();
+      // alert(123);
+    }, []);
+    // #9 または
+    
+  // function handleClick  (e)  {
+    //   console.log(e.target.href);
+    //   e.preventDefault();
+  //   // alert(123);
+  // }
+  
   return (
     <>
       <Head>
@@ -29,10 +56,23 @@ export default function Home() {
       <div
         className={`${styles.page} ${geistSans.variable} ${geistMono.variable}`}
       >
+
+        <a 
+        href="/about"
+        onClick={handleClick}
+        // onClick={(e) =>{
+        //   handleClick(e,foo);
+        //   // コンポーネントの外だと2つの引数が必要
+        // }}
+        
+        
+        >
+          ボタン
+        </a>
+        {/* #9 function(e) または　(e)=> */}
         <Header />
 
         <Main page="index" />
-
         <Footer />
       </div>
     </>
