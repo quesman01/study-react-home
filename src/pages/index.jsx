@@ -4,7 +4,7 @@ import styles from "src/styles/Home.module.css";
 import { Footer } from "src/components/Footer/Footer";
 import { Main } from "@/src/components/Main/Main";
 import { Header } from "src/components/Header/Header";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 // #8 相対パスから絶対パスへの変更 設定よりユーザーは全体、ワークスペースは今のやつのみ
 
@@ -29,25 +29,21 @@ export default function Home() {
   
   // let foo =1;
 
-  const handleClick = (e) =>{
+  const handleClick = useCallback((e) =>{
     // foo = foo + 1;
-    setCount( (count) => count +1 );
-    setCount( (count) => count +1 );
-  };
-
-  console.log(count)
-  
-  
-  useEffect(()=>{
-    // console.log("マウント時");
-    document.body.style.backgroundColor = "lightblue"
-    
-    return () => {
-      // console.log("アンマウント時");
-      document.body.style.backgroundColor = ""
-      
+    if (count < 10){
+      setCount( (count) => count +1 );
     }
-  },[])
+  },[count]);
+
+  useEffect(()=>{
+    // console.log(`マウント時: ${count}`);
+    document.body.style.backgroundColor = "lightblue"
+    return () => {
+      // console.log(`アンマウント時: ${count}`);
+      document.body.style.backgroundColor = ""
+    }
+  },[count])
   // 下の関数にいれてるが、上からの順番なのでこのままfooを下に書くとエラーがでる
   // コンポーネントの外だと上下ないが (e, foo)という形で呼び出す必要がある
   
