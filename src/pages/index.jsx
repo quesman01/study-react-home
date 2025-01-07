@@ -2,9 +2,9 @@ import Head from "next/head";
 import { Geist, Geist_Mono, Maiden_Orange } from "next/font/google";
 import styles from "src/styles/Home.module.css";
 import { Footer } from "src/components/Footer/Footer";
-import { Main } from "src/components/Main/Main";
+import { Main } from "@/src/components/Main/Main";
 import { Header } from "src/components/Header/Header";
-import { useCallback } from "react";
+// import { useCallback, useEffect } from "react";
 
 // #8 相対パスから絶対パスへの変更 設定よりユーザーは全体、ワークスペースは今のやつのみ
 
@@ -25,26 +25,35 @@ const geistMono = Geist_Mono({
 // }
 
 export default function Home() {
+  // useEffect(()=>{
+  //   console.log("マウント時");
+  //   document.body.style.backgroundColor = "lightblue"
+
+  //   return () => {
+  //     console.log("アンマウント時");
+  //     document.body.style.backgroundColor = "lightblue"
+
+  //   }
+  // },[])
   const foo =1;
 
-  // const foo =1;
   // 下の関数にいれてるが、上からの順番なのでこのままfooを下に書くとエラーがでる
   // コンポーネントの外だと上下ないが (e, foo)という形で呼び出す必要がある
-  
-  // #9 
-  const handleClick = useCallback((e) => {
-      console.log(e.target.href);
-      e.preventDefault();
-      // alert(123);
-    }, []);
-    // #9 または
-    
-  // function handleClick  (e)  {
-    //   console.log(e.target.href);
-    //   e.preventDefault();
-  //   // alert(123);
-  // }
-  
+
+  // // #9
+  // const handleClick = useCallback((e) => {
+  //     console.log(e.target.href);
+  //     e.preventDefault();
+  //     alert(123);
+  //   }, []);
+  // #9 または
+
+  function handleClick  (e)  {
+    console.log(e.target.href);
+    // e.preventDefault();
+    alert(123);
+  }
+
   return (
     <>
       <Head>
@@ -56,16 +65,13 @@ export default function Home() {
       <div
         className={`${styles.page} ${geistSans.variable} ${geistMono.variable}`}
       >
-
-        <a 
-        href="/about"
-        onClick={handleClick}
-        // onClick={(e) =>{
-        //   handleClick(e,foo);
-        //   // コンポーネントの外だと2つの引数が必要
-        // }}
-        
-        
+        <a
+          href="/about"
+          onClick={handleClick}
+          // // onClick={(e) =>{
+          // //   handleClick(e,foo);
+          // //   // コンポーネントの外だと2つの引数が必要
+          // // }}
         >
           ボタン
         </a>
