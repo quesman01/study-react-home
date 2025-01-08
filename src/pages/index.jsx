@@ -28,6 +28,7 @@ export default function Home() {
   const [count, setCount] = useState(1);
   const [text, setText] = useState("");
   const [isshow, setIshhow] = useState(true);
+  const [array, setArray] = useState([]);
   
   // let foo =1;
 
@@ -70,6 +71,17 @@ export default function Home() {
     setIshhow((previsshow) =>  !previsshow);
   }, []);
 
+
+  const handleadd = useCallback(()=>{
+    setArray((prevarray)=>{
+      if (prevarray.some(item => item === text)){
+        alert("同じ要素が既に存在します。")
+        return prevarray;
+      }
+      return [...prevarray, text]
+    });
+  },[text])
+
   return (
     <>
       <Head>
@@ -97,16 +109,23 @@ export default function Home() {
             {isshow ? "非常時": "表示"}
         </button>
         {/* #13 jsx(React)において　return文の中ではif文は使えない */}
-      <div
-        className={`${styles.page} ${geistSans.variable} ${geistMono.variable}`}
-      >
-        <input 
-          type="text" 
-          value={text} 
-          onChange={handleChange}/>
+          <input className={styles.center2} type="text" value={text} onChange={handleChange}/>
+        <div className={styles.center}>
+          <button onClick={handleadd}>追加</button>
+          <ul>
+            {array.map(item =>{
+              return (
+                <li className={styles.inl} key={item}>{item}</li>
+              )
+            })}
+          </ul>
 
+        </div>
         <Main page="index" />
         <Footer />
+        <div
+          className={`${styles.page} ${geistSans.variable} ${geistMono.variable}`}
+        >
       </div>
     </>
   );

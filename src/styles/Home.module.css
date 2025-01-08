@@ -26,6 +26,21 @@
   text-align: center;
 }
 
+.center{
+  text-align: center;
+}
+
+.center2{
+  display: flex;
+  justify-content: center;
+  margin-left: 100px;
+}
+
+.inl{
+  width: 100px;
+  margin: 0 auto;
+}
+
 @media (prefers-color-scheme: dark) {
   .page {
     --gray-rgb: 255, 255, 255;
