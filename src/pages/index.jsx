@@ -4,19 +4,27 @@ import styles from "src/styles/Home.module.css";
 import { Footer } from "src/components/Footer/Footer";
 import { Main } from "@/src/components/Main/Main";
 import { Header } from "src/components/Header/Header";
-import { useCallback, useEffect, useState } from "react";
+// import { useCallback, useEffect, useState } from "react";
+import { useCounter } from "@/src/hooks/useCounter";
+import { useInputArray } from "@/src/hooks/useInputArray";
+import { useBGLightBlue } from "@/src/hooks/useBGLightBlue";
+
 
 // #8 相対パスから絶対パスへの変更 設定よりユーザーは全体、ワークスペースは今のやつのみ
+// const geistSans = Geist({
+//   variable: "--font-geist-sans",
+//   subsets: ["latin"],
+// });
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+// const geistMono = Geist_Mono({
+//   variable: "--font-geist-mono",
+//   subsets: ["latin"],
+// });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+
+
+
+
 
 // const handleClick = (e,foo)=>{
 //   console.log(e.target.href);
@@ -25,28 +33,16 @@ const geistMono = Geist_Mono({
 // }
 
 export default function Home() {
-  const [count, setCount] = useState(1);
-  const [text, setText] = useState("");
-  const [isshow, setIshhow] = useState(true);
-  const [array, setArray] = useState([]);
+  const {count, isshow, handleClick, handleDisplay} = useCounter();
+  const {text, array, handleChange,handleadd} = useInputArray();
+  useBGLightBlue();
+
   
   // let foo =1;
 
-  const handleClick = useCallback((e) =>{
-    // foo = foo + 1;
-    if (count < 10){
-      setCount( (prevcount) => prevcount +1 );
-    }
-  },[count]);
+ 
 
-  useEffect(()=>{
-    // console.log(`マウント時: ${count}`);
-    document.body.style.backgroundColor = "lightblue"
-    return () => {
-      // console.log(`アンマウント時: ${count}`);
-      document.body.style.backgroundColor = ""
-    }
-  },[count])
+
   // 下の関数にいれてるが、上からの順番なのでこのままfooを下に書くとエラーがでる
   // コンポーネントの外だと上下ないが (e, foo)という形で呼び出す必要がある
   
@@ -58,30 +54,6 @@ export default function Home() {
   //   // e.preventDefault();
   //   alert(123);
   // }
-
-  const handleChange = useCallback((e) => {
-    if(e.target.value.length > 5){
-      alert("5文字以内にしてください")
-      return;
-    }
-     setText(e.target.value.trim())
-  },[]);
-
-  const handleDisplay = useCallback(() =>{
-    setIshhow((previsshow) =>  !previsshow);
-  }, []);
-
-
-  const handleadd = useCallback(()=>{
-    setArray((prevarray)=>{
-      if (prevarray.some(item => item === text)){
-        alert("同じ要素が既に存在します。")
-        return prevarray;
-      }
-      return [...prevarray, text]
-    });
-  },[text])
-
   return (
     <>
       <Head>
@@ -123,10 +95,10 @@ export default function Home() {
         </div>
         <Main page="index" />
         <Footer />
-        <div
+        {/* <div
           className={`${styles.page} ${geistSans.variable} ${geistMono.variable}`}
         >
-      </div>
+      </div> */}
     </>
   );
 }
